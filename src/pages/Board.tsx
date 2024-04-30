@@ -1,9 +1,11 @@
 import React from 'react';
 import { Card, Grid, styled } from '@mui/material';
+import styles from "./index.module.css"
 
 const StyledCard = styled(Card)({
   width: 'fit-content',
   maxWidth: '100%',
+
 });
 
 const StyledGrid = styled(Grid)({
@@ -101,28 +103,21 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn }) => {
           <StyledGrid container justifyContent="stretch" key={rowIndex}>
             {row.map((col, colIndex) => (
               <div
+                className={styles.cell}
                 onClick={() => clickBoard(rowIndex, colIndex)}
                 key={colIndex}
                 style={{
-                  border: '1px solid #000',
                   backgroundColor: '#3b6a39',
-                  aspectRatio: '1 / 1',
-                  textAlign: 'center',
-                  width: 80,
-                  height: 80,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+ 
                 }}
               >
                 {/* <div style={{background:"black"}}> */}
                 {col !== 0 && (
                   <div
+                    className={styles.stone}
                     style={{
                       background: col === 1 ? 'black' : 'white',
-                      width: 60,
-                      height: 60,
-                      borderRadius: 100,
+
                     }}
                   />
                 )}

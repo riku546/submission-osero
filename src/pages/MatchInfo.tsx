@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MatchInfo = ({ black, white, turn, skipRest, dispatch }) => {
+const MatchInfo = ({ black, white, turn, skipRest, dispatch  }) => {
   return (
     <div style={{display:"flex"}}>
         <div style={{marginRight:30}}>
@@ -22,7 +22,7 @@ const MatchInfo = ({ black, white, turn, skipRest, dispatch }) => {
         </button>
         <h4>skipRest: {skipRest}</h4>
         </div>
-        <button onClick={()=>window.location.reload()}>Restart</button>
+        <button onClick={()=> window.location.reload()}>Restart</button>
       </div>
     </div>
   );

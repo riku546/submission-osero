@@ -1,7 +1,9 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import Board from './Board';
 import MatchInfo from './MatchInfo';
-import styles from "./index.module.css"
+import styles from './index.module.css';
+import { findValidMoves } from './function/FindValidMoves';
+
 const Home = () => {
   const defaultBoard = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -12,6 +14,17 @@ const Home = () => {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+
+  const direction = [
+    [-1, 0],
+    [-1, 1],
+    [0, 1],
+    [1, 1],
+    [1, 0],
+    [1, -1],
+    [0, -1],
+    [-1, -1],
   ];
 
   const reduer = (skipRest) => {
@@ -27,7 +40,14 @@ const Home = () => {
   const [black, setBlack] = useState(2);
   const [white, setWhite] = useState(2);
   const [skipRest, dispatch] = useReducer(reduer, 0);
+  const [validMoves , setValidMoves] = useState([])
 
+  useEffect(() => {
+    const result = findValidMoves(board, direction, turn);
+    setValidMoves(result)
+  }, [board]);
+
+  
   const pointCount = (board: number[][]) => {
     const blackCount = [];
     const whiteCount = [];
@@ -49,15 +69,22 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.board}>
-
-      <MatchInfo black={black} white={white} turn={turn} skipRest={skipRest} dispatch={dispatch} />
-      <Board
-        pointCount={pointCount}
-        board={board}
-        setBoard={setBoard}
-        turn={turn}
-        setTurn={setTurn}
-      />
+        <MatchInfo
+          black={black}
+          white={white}
+          turn={turn}
+          skipRest={skipRest}
+          dispatch={dispatch}
+        />
+        <Board
+          pointCount={pointCount}
+          board={board}
+          setBoard={setBoard}
+          turn={turn}
+          setTurn={setTurn}
+          direction={direction}
+          validMoves={validMoves}
+        />
       </div>
     </div>
   );

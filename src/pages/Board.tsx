@@ -1,28 +1,19 @@
-import React from 'react';
+
 import { Card, Grid, styled } from '@mui/material';
-import styles from "./index.module.css"
+import styles from './index.module.css';
 
 const StyledCard = styled(Card)({
   width: 'fit-content',
   maxWidth: '100%',
-
 });
 
 const StyledGrid = styled(Grid)({
   justifyContent: 'stretch',
 });
 
-const Board = ({ pointCount, board, setBoard, turn, setTurn }) => {
-  const direction = [
-    [-1, 0],
-    [-1, 1],
-    [0, 1],
-    [1, 1],
-    [1, 0],
-    [1, -1],
-    [0, -1],
-    [-1, -1],
-  ];
+const Board = ({ pointCount, board, setBoard, turn, setTurn, direction ,validMoves}) => {
+
+
 
   const getReversePoints = (currentX: number, currentY: number) => {
     const result: number[][] = [];
@@ -66,9 +57,9 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn }) => {
         }
       }
       result.push(...localChangePoint);
-      console.log(localChangePoint);
+      // console.log(localChangePoint);
     });
-    console.log(result);
+    // console.log(result);
     return result;
   };
 
@@ -95,6 +86,12 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn }) => {
     setBoard(newBoard);
     setTurn(turn === 1 ? 2 : 1);
   };
+  // if (!validMoves){
+  //   return;
+  // }else{
+
+  //   const newValidMoves = [...validMoves]
+  // }
 
   return (
     <>
@@ -106,9 +103,11 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn }) => {
                 className={styles.cell}
                 onClick={() => clickBoard(rowIndex, colIndex)}
                 key={colIndex}
+                // style={{background: validMoves.some((move)=>{
+                //   rowIndex===move[0] && colIndex=== move[1] ? "blue" : "rgb(7, 110, 86)"
+                // })}}
                 style={{
-                  backgroundColor: '#3b6a39',
- 
+                  background: (validMoves as number[][]).some((move:number[]) => move[0] === rowIndex && move[1] === colIndex) ? "blue" : "rgb(7, 110, 86)"
                 }}
               >
                 {/* <div style={{background:"black"}}> */}
@@ -117,7 +116,6 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn }) => {
                     className={styles.stone}
                     style={{
                       background: col === 1 ? 'black' : 'white',
-
                     }}
                   />
                 )}

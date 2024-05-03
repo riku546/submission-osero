@@ -3,6 +3,7 @@ import Board from './component/Board';
 import MatchInfo from './component/MatchInfo';
 import styles from './index.module.css';
 import { findValidMoves } from './function/FindValidMoves';
+import { pointCount } from './function/PointCount';
 
 const Home = () => {
   const defaultBoard = [
@@ -44,27 +45,13 @@ const Home = () => {
 
   useEffect(() => {
     const result = findValidMoves(board, direction, turn);
-    // console.log(result)
+    const [black , white] = pointCount(board)
+    setBlack(black)
+    setWhite(white)
     setValidMoves(result);
   }, [board]);
 
-  const pointCount = (board: number[][]) => {
-    const blackCount = [];
-    const whiteCount = [];
 
-    board.map((b) => {
-      b.map((i) => {
-        if (i === 1) {
-          blackCount.push(i);
-        } else if (i === 2) {
-          whiteCount.push(i);
-        }
-      });
-    });
-
-    setBlack(blackCount.length);
-    setWhite(whiteCount.length);
-  };
 
   return (
     <div className={styles.container}>

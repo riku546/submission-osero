@@ -1,5 +1,5 @@
 import { Card, Grid, styled } from '@mui/material';
-import styles from './index.module.css';
+import styles from '../index.module.css';
 import { getReversePoints } from '../function/GetReversePoints';
 
 const StyledCard = styled(Card)({

@@ -2,6 +2,7 @@ export const findValidMoves = (board, direction, turn) => {
   const resultMoves = [];
   board.map((row, y) => {
     row.map((s, x) => {
+      let temporyMoves = [];
       if (s !== 0) return;
       direction.map((row) => {
         let moveX = x + row[0];
@@ -14,16 +15,27 @@ export const findValidMoves = (board, direction, turn) => {
         } else if (board[moveY][moveX] === turn) {
           return;
         } else {
+          temporyMoves.push([y,x])
           while (true) {
             moveX += row[0];
             moveY += row[1];
 
+            if (moveY < 0 || moveY > 7) break;
+            if (moveX < 0 || moveX > 7) break;
+
             if (board[moveY][moveX] === 0) {
-              return;
+              break;
             } else if (board[moveY][moveX] === turn) {
-              resultMoves.push([y, x]);
+              if(!temporyMoves ){
+                break;
+              }else{
+
+                resultMoves.push([y, x]);
+                temporyMoves
+                break;
+              }
             } else {
-              return;
+              temporyMoves.push([y , x])
             }
           }
         }

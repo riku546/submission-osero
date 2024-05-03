@@ -44,6 +44,7 @@ const Home = () => {
 
   useEffect(() => {
     const result = findValidMoves(board, direction, turn);
+    // console.log(result)
     setValidMoves(result)
   }, [board]);
 

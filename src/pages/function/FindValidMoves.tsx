@@ -2,7 +2,7 @@ export const findValidMoves = (board, direction, turn) => {
   const resultMoves = [];
   board.map((row, y) => {
     row.map((s, x) => {
-      let temporyMoves = [];
+      const temporyMoves = [];
       if (s !== 0) return;
       direction.map((row) => {
         let moveX = x + row[0];

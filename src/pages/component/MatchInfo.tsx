@@ -20,7 +20,7 @@ const MatchInfo = ({ black, white, turn, skipRest, dispatch  }) => {
         >
           skip
         </button>
-        <h4>skipRest: {skipRest}</h4>
+        <h4>skipCount: {skipRest}</h4>
         </div>
         <button onClick={()=> window.location.reload()}>Restart</button>
       </div>

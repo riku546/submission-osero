@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from 'react';
-import Board from './Board';
-import MatchInfo from './MatchInfo';
+import Board from './component/Board';
+import MatchInfo from './component/MatchInfo';
 import styles from './index.module.css';
 import { findValidMoves } from './function/FindValidMoves';
 
@@ -40,15 +40,14 @@ const Home = () => {
   const [black, setBlack] = useState(2);
   const [white, setWhite] = useState(2);
   const [skipRest, dispatch] = useReducer(reduer, 0);
-  const [validMoves , setValidMoves] = useState([])
+  const [validMoves, setValidMoves] = useState([]);
 
   useEffect(() => {
     const result = findValidMoves(board, direction, turn);
     // console.log(result)
-    setValidMoves(result)
+    setValidMoves(result);
   }, [board]);
 
-  
   const pointCount = (board: number[][]) => {
     const blackCount = [];
     const whiteCount = [];

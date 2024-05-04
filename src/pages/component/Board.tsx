@@ -13,27 +13,31 @@ const StyledGrid = styled(Grid)({
 
 const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMoves }) => {
   const clickBoard = (rowIndex: number, colIndex: number) => {
-    const newBoard = [...board];
-    const reversePoints = getReversePoints(colIndex, rowIndex, direction, board, turn);
-    newBoard[rowIndex][colIndex] = turn;
-    // console.log("gg");
+    if (board[rowIndex][colIndex] !== 0) {
+      return;
+    } else {
+      const newBoard = [...board];
+      const reversePoints = getReversePoints(colIndex, rowIndex, direction, board, turn);
+      newBoard[rowIndex][colIndex] = turn;
+      // console.log("gg");
 
-    reversePoints.forEach((item) => {
-      if (item.length === 0) {
-        return;
-      } else {
-        // console.log(item);
-        const x = item[0];
-        const y = item[1];
-        // console.log(y, x);
-        // console.log(turn)
-        newBoard[y][x] = turn === 1 ? 1 : 2;
-      }
-    });
-    // console.log(newBoard)
-    pointCount(newBoard);
-    setBoard(newBoard);
-    setTurn(turn === 1 ? 2 : 1);
+      reversePoints.forEach((item) => {
+        if (item.length === 0) {
+          return;
+        } else {
+          // console.log(item);
+          const x = item[0];
+          const y = item[1];
+          // console.log(y, x);
+          // console.log(turn)
+          newBoard[y][x] = turn === 1 ? 1 : 2;
+        }
+      });
+      // console.log(newBoard)
+      pointCount(newBoard);
+      setBoard(newBoard);
+      setTurn(turn === 1 ? 2 : 1);
+    }
   };
 
   return (

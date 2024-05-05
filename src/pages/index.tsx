@@ -1,9 +1,9 @@
-import { useEffect, useReducer, useState } from 'react';
 import Board from './component/Board';
 import MatchInfo from './component/MatchInfo';
-import styles from './index.module.css';
 import { findValidMoves } from './function/FindValidMoves';
 import { pointCount } from './function/PointCount';
+import styles from './index.module.css';
+import { useEffect,  useState } from 'react';
 
 const Home = () => {
   const defaultBoard = [
@@ -28,19 +28,12 @@ const Home = () => {
     [-1, -1],
   ];
 
-  const reduer = (skipRest) => {
-    if (skipRest === 1) {
-      window.location.reload();
-    }
-    setTurn((prev) => 3 - prev);
-    return skipRest + 1;
-  };
+
 
   const [board, setBoard] = useState(defaultBoard);
   const [turn, setTurn] = useState(1);
   const [black, setBlack] = useState(2);
   const [white, setWhite] = useState(2);
-  const [skipRest, dispatch] = useReducer(reduer, 0);
   const [validMoves, setValidMoves] = useState([]);
 
   useEffect(() => {
@@ -60,8 +53,7 @@ const Home = () => {
           black={black}
           white={white}
           turn={turn}
-          skipRest={skipRest}
-          dispatch={dispatch}
+
         />
         <Board
           pointCount={pointCount}

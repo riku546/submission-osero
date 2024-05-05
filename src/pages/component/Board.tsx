@@ -19,21 +19,16 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMov
       const newBoard = [...board];
       const reversePoints = getReversePoints(colIndex, rowIndex, direction, board, turn);
       newBoard[rowIndex][colIndex] = turn;
-      // console.log("gg");
 
       reversePoints.forEach((item) => {
         if (item.length === 0) {
           return;
         } else {
-          // console.log(item);
           const x = item[0];
           const y = item[1];
-          // console.log(y, x);
-          // console.log(turn)
           newBoard[y][x] = turn === 1 ? 1 : 2;
         }
       });
-      // console.log(newBoard)
       pointCount(newBoard);
       setBoard(newBoard);
       setTurn(turn === 1 ? 2 : 1);
@@ -54,11 +49,11 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMov
                   background: (validMoves as number[][]).some(
                     (move: number[]) => move[0] === rowIndex && move[1] === colIndex,
                   )
-                    ? 'blue'
-                    : 'rgb(7, 110, 86)',
+                    ? '#708090'
+                    : '#444444',
                 }}
               >
-                {/* <div style={{background:"black"}}> */}
+
                 {col !== 0 && (
                   <div
                     className={styles.stone}
@@ -68,7 +63,6 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMov
                   />
                 )}
               </div>
-              // </div>
             ))}
           </StyledGrid>
         ))}

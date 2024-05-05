@@ -15,11 +15,9 @@ export const getReversePoints = (currentX: number, currentY: number , direction 
       if (pointStatus === 0) return;
       if (pointStatus === turn) return;
 
-      // let localChangePoint = [axisX + currentX, axisY + currentY];
       let localChangePoint = [];
       localChangePoint.push([x, y]);
 
-      // console.log("ff");
 
       while (true) {
         x += axisX;
@@ -40,8 +38,6 @@ export const getReversePoints = (currentX: number, currentY: number , direction 
         }
       }
       result.push(...localChangePoint);
-      // console.log(localChangePoint);
     });
-    // console.log(result);
     return result;
   };

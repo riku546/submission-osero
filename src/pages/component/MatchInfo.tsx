@@ -1,28 +1,17 @@
 import React from 'react';
 
-const MatchInfo = ({ black, white, turn, skipRest, dispatch  }) => {
+const MatchInfo = ({ black, white, turn }) => {
   return (
-    <div style={{display:"flex"}}>
-        <div style={{marginRight:30}}>
-
-      <h3>Turn: {turn === 1 ? 'black' : 'white'}</h3>
-      <h3>black: {black}</h3>
-      <h3>white: {white}</h3>
-        </div>
-      <div>
-        <div style={{display:"flex" , alignItems:"center"}}>
-
-        <button
-          onClick={() => {
-            dispatch();
-          }}
-          style={{height:20,  }}
-        >
-          skip
+    <div style={{ display: 'flex', color: 'white' }}>
+      <div style={{ marginRight: 30 }}>
+        <h3>Turn: {turn === 1 ? 'black' : 'white'}</h3>
+        <h3>black: {black}</h3>
+        <h3>white: {white}</h3>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <button onClick={() => window.location.reload()} style={{ padding: 10, borderRadius: 15 }}>
+          Restart
         </button>
-        <h4>skipCount: {skipRest}</h4>
-        </div>
-        <button onClick={()=> window.location.reload()}>Restart</button>
       </div>
     </div>
   );

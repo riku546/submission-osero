@@ -1,7 +1,7 @@
 import Board from './component/Board';
 import MatchInfo from './component/MatchInfo';
 import { cellType, initialBoard } from './constant';
-import { findValidMoves } from './function/FindValidMoves';
+import { GetValidMoves } from './function/GetValidMoves';
 import { getReversedBoard } from './function/GetReversedBoard';
 import styles from './index.module.css';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,7 @@ const Home = () => {
   const [validMoves, setValidMoves] = useState<number[][]>([]);
 
   useEffect(() => {
-    const result = findValidMoves(board, currentTurn);
+    const result = GetValidMoves(board, currentTurn);
     setValidMoves(result);
   }, [board]);
 
@@ -24,14 +24,12 @@ const Home = () => {
     }
 
     const newBoard = [...board];
+    //クリックした場所にコマを置く
     newBoard[rowIndex][colIndex] = currentTurn;
 
     const reversedBoard: number[][] = getReversedBoard(colIndex, rowIndex, board, currentTurn);
 
-
-
     setBoard(reversedBoard);
-
     setCurrentTurn(getOppositeCellType(currentTurn));
   };
 

@@ -15,7 +15,7 @@ const Board = ({ board, clickBoard, validMoves }) => {
 
   return (
     <>
-      <StyledCard square>
+      <StyledCard square style={{backgroundColor:"#0f1214"}}>
         {board.map((row: number[], rowIndex: number) => (
           <StyledGrid container justifyContent="stretch" key={rowIndex}>
             {row.map((col: number, colIndex: number) => (

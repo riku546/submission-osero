@@ -5,6 +5,7 @@ import { findValidMoves } from './function/FindValidMoves';
 import { getReversedBoard } from './function/GetReversedBoard';
 import styles from './index.module.css';
 import { useEffect, useState } from 'react';
+import { getOppositeCellType } from './lib';
 
 const Home = () => {
   const [board, setBoard] = useState(initialBoard);
@@ -25,15 +26,13 @@ const Home = () => {
     const newBoard = [...board];
     newBoard[rowIndex][colIndex] = currentTurn;
 
-    const reversePoints: number[][] = getReversedBoard(colIndex, rowIndex, board, currentTurn);
+    const reversedBoard: number[][] = getReversedBoard(colIndex, rowIndex, board, currentTurn);
 
-    reversePoints.map(([x, y]) => {
-      newBoard[y][x] = currentTurn;
-    });
 
-    setBoard(newBoard);
-    //currentTurnを逆の値にする
-    setCurrentTurn(currentTurn === cellType.black ? cellType.white : cellType.black);
+
+    setBoard(reversedBoard);
+
+    setCurrentTurn(getOppositeCellType(currentTurn));
   };
 
   return (

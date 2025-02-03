@@ -1,4 +1,4 @@
-import { direction } from '../constant';
+import { directions } from '../constant';
 
 export const findValidMoves = (board: number[][], turn: number) => {
   const resultMoves: number[][] = [];
@@ -6,7 +6,7 @@ export const findValidMoves = (board: number[][], turn: number) => {
     row.map((s, x) => {
       const temporyMoves: number[][] = [];
       if (s !== 0) return;
-      direction.map((row) => {
+      directions.map((row) => {
         let moveX = x + row[0];
         let moveY = y + row[1];
         if (moveY < 0 || moveY > 7) return;

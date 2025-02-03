@@ -38,9 +38,9 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMov
   return (
     <>
       <StyledCard square>
-        {board.map((row, rowIndex) => (
+        {board.map((row: number[], rowIndex: number) => (
           <StyledGrid container justifyContent="stretch" key={rowIndex}>
-            {row.map((col, colIndex) => (
+            {row.map((col: number, colIndex: number) => (
               <div
                 className={styles.cell}
                 onClick={() => clickBoard(rowIndex, colIndex)}
@@ -53,7 +53,6 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMov
                     : '#444444',
                 }}
               >
-
                 {col !== 0 && (
                   <div
                     className={styles.stone}

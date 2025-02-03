@@ -34,7 +34,7 @@ const Home = () => {
   const [turn, setTurn] = useState(1);
   const [black, setBlack] = useState(2);
   const [white, setWhite] = useState(2);
-  const [validMoves, setValidMoves] = useState([]);
+  const [validMoves, setValidMoves] = useState<number[][]>([]);
 
   useEffect(() => {
     const result = findValidMoves(board, direction, turn);

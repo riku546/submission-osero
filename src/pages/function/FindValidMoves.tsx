@@ -1,8 +1,8 @@
-export const findValidMoves = (board, direction, turn) => {
-  const resultMoves = [];
+export const findValidMoves = (board:number[][], direction:number[][], turn:number) => {
+  const resultMoves: number[][] = [];
   board.map((row, y) => {
     row.map((s, x) => {
-      const temporyMoves = [];
+      const temporyMoves: number[][] = [];
       if (s !== 0) return;
       direction.map((row) => {
         let moveX = x + row[0];
@@ -15,7 +15,7 @@ export const findValidMoves = (board, direction, turn) => {
         } else if (board[moveY][moveX] === turn) {
           return;
         } else {
-          temporyMoves.push([y,x])
+          temporyMoves.push([y, x]);
           while (true) {
             moveX += row[0];
             moveY += row[1];
@@ -26,16 +26,15 @@ export const findValidMoves = (board, direction, turn) => {
             if (board[moveY][moveX] === 0) {
               break;
             } else if (board[moveY][moveX] === turn) {
-              if(!temporyMoves ){
+              if (!temporyMoves) {
                 break;
-              }else{
-
+              } else {
                 resultMoves.push([y, x]);
-                temporyMoves
+                temporyMoves;
                 break;
               }
             } else {
-              temporyMoves.push([y , x])
+              temporyMoves.push([y, x]);
             }
           }
         }

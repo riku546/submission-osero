@@ -11,7 +11,7 @@ const StyledGrid = styled(Grid)({
   justifyContent: 'stretch',
 });
 
-const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMoves }) => {
+const Board = ({ board, setBoard, turn, setTurn, direction, validMoves }) => {
   const clickBoard = (rowIndex: number, colIndex: number) => {
     if (board[rowIndex][colIndex] !== 0) {
       return;
@@ -29,7 +29,7 @@ const Board = ({ pointCount, board, setBoard, turn, setTurn, direction, validMov
           newBoard[y][x] = turn === 1 ? 1 : 2;
         }
       });
-      pointCount(newBoard);
+
       setBoard(newBoard);
       setTurn(turn === 1 ? 2 : 1);
     }

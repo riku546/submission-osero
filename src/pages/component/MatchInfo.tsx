@@ -11,7 +11,17 @@ const MatchInfo = ({ board, turn }) => {
         <h3>white: {whiteCount}</h3>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <button onClick={() => window.location.reload()} style={{ padding: 10, borderRadius: 15 }}>
+        <button
+          onClick={() => window.location.reload()}
+          style={{
+            width: '100px',
+            padding: 10,
+            borderRadius: 15,
+            backgroundColor: '#015cb8',
+            border: 'none',
+            color: 'white',
+          }}
+        >
           Restart
         </button>
       </div>

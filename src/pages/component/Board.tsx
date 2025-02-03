@@ -49,8 +49,8 @@ const Board = ({ board, setBoard, turn, setTurn, direction, validMoves }) => {
                   background: (validMoves as number[][]).some(
                     (move: number[]) => move[0] === rowIndex && move[1] === colIndex,
                   )
-                    ? '#708090'
-                    : '#444444',
+                    ? '#273037'
+                    : '#0c0f11',
                 }}
               >
                 {col !== 0 && (

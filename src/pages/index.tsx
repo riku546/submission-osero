@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.board}>
+      <div>
         <MatchInfo board={board} turn={turn} />
         <Board
           board={board}

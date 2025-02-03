@@ -1,7 +1,9 @@
+import { direction } from "../constant";
+
+
 export const getReversePoints = (
   currentX: number,
   currentY: number,
-  direction: number[][],
   board: number[][],
   turn: number,
 ) => {
@@ -16,10 +18,10 @@ export const getReversePoints = (
     if (y < 0 || y > 7) return;
     if (x < 0 || x > 7) return;
 
-    const pointStatus = board[y][x];
+    const cellStatus = board[y][x];
 
-    if (pointStatus === 0) return;
-    if (pointStatus === turn) return;
+    if (cellStatus === 0) return;
+    if (cellStatus === turn) return;
 
     let localChangePoint: number[][] = [];
     localChangePoint.push([x, y]);

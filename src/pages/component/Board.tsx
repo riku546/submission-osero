@@ -1,6 +1,5 @@
 import { Card, Grid, styled } from '@mui/material';
 import styles from '../index.module.css';
-import { getReversePoints } from '../function/GetReversePoints';
 
 const StyledCard = styled(Card)({
   width: 'fit-content',
@@ -11,29 +10,8 @@ const StyledGrid = styled(Grid)({
   justifyContent: 'stretch',
 });
 
-const Board = ({ board, setBoard, turn, setTurn, direction, validMoves }) => {
-  const clickBoard = (rowIndex: number, colIndex: number) => {
-    if (board[rowIndex][colIndex] !== 0) {
-      return;
-    } else {
-      const newBoard = [...board];
-      const reversePoints = getReversePoints(colIndex, rowIndex, direction, board, turn);
-      newBoard[rowIndex][colIndex] = turn;
+const Board = ({ board, clickBoard, validMoves }) => {
 
-      reversePoints.forEach((item) => {
-        if (item.length === 0) {
-          return;
-        } else {
-          const x = item[0];
-          const y = item[1];
-          newBoard[y][x] = turn === 1 ? 1 : 2;
-        }
-      });
-
-      setBoard(newBoard);
-      setTurn(turn === 1 ? 2 : 1);
-    }
-  };
 
   return (
     <>

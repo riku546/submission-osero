@@ -1,4 +1,6 @@
-export const findValidMoves = (board:number[][], direction:number[][], turn:number) => {
+import { direction } from '../constant';
+
+export const findValidMoves = (board: number[][], turn: number) => {
   const resultMoves: number[][] = [];
   board.map((row, y) => {
     row.map((s, x) => {

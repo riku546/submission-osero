@@ -9,9 +9,6 @@ export const direction = [
   [-1, -1],
 ];
 
-//マジックナンバーを隠蔽
-export const cellType = { black: 1, white: 2, empty: 0 };
-
 export const initialBoard = [
   // black : 1 , white : 2 , empty : 0
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -23,3 +20,8 @@ export const initialBoard = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
 ];
+
+export const boardSize = initialBoard.length;
+
+//マジックナンバーを隠蔽
+export const cellType = { black: 1, white: 2, empty: 0 };

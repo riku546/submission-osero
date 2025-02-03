@@ -1,15 +1,14 @@
 import Board from './component/Board';
 import MatchInfo from './component/MatchInfo';
-import { initialBoard } from './constant';
+import { cellType, initialBoard } from './constant';
 import { findValidMoves } from './function/FindValidMoves';
-import { getReversePoints } from './function/GetReversePoints';
+import { getReversedBoard } from './function/GetReversedBoard';
 import styles from './index.module.css';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
   const [board, setBoard] = useState(initialBoard);
-
-  const [currentTurn, setCurrentTurn] = useState(1);
+  const [currentTurn, setCurrentTurn] = useState(cellType.black);
   const [validMoves, setValidMoves] = useState<number[][]>([]);
 
   useEffect(() => {
@@ -18,21 +17,23 @@ const Home = () => {
   }, [board]);
 
   const clickBoard = (rowIndex: number, colIndex: number) => {
-    if (board[rowIndex][colIndex] !== 0) {
+    //すでにコマが置かれている場合は何もしない
+    if (board[rowIndex][colIndex] !== cellType.empty) {
       return;
     }
 
     const newBoard = [...board];
     newBoard[rowIndex][colIndex] = currentTurn;
 
-    const reversePoints: number[][] = getReversePoints(colIndex, rowIndex, board, currentTurn);
+    const reversePoints: number[][] = getReversedBoard(colIndex, rowIndex, board, currentTurn);
 
     reversePoints.map(([x, y]) => {
-      newBoard[y][x] = currentTurn === 1 ? 1 : 2;
+      newBoard[y][x] = currentTurn;
     });
 
     setBoard(newBoard);
-    setCurrentTurn(currentTurn === 1 ? 2 : 1);
+    //currentTurnを逆の値にする
+    setCurrentTurn(currentTurn === cellType.black ? cellType.white : cellType.black);
   };
 
   return (

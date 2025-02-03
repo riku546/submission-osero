@@ -1,44 +1,40 @@
-import { direction } from "../constant";
+import { direction } from '../constant';
+import { isOutOfBoard } from '../lib';
 
-
-export const getReversePoints = (
+export const getReversedBoard = (
   currentX: number,
   currentY: number,
   board: number[][],
-  turn: number,
+  currentTurn: number,
 ) => {
   const result: number[][] = [];
 
   direction.forEach((d) => {
-    const axisX = d[0];
-    const axisY = d[1];
-    let x = axisX + currentX;
-    let y = axisY + currentY;
+    let x = d[0] + currentX;
+    let y = d[1] + currentY;
 
-    if (y < 0 || y > 7) return;
-    if (x < 0 || x > 7) return;
+    if (isOutOfBoard(x, y)) return;
 
     const cellStatus = board[y][x];
 
     if (cellStatus === 0) return;
-    if (cellStatus === turn) return;
+    if (cellStatus === currentTurn) return;
 
     let localChangePoint: number[][] = [];
     localChangePoint.push([x, y]);
 
     while (true) {
-      x += axisX;
-      y += axisY;
+      x += d[0];
+      y += d[1];
 
-      if (y < 0 || y > 7) return;
-      if (x < 0 || x > 7) return;
+      if (isOutOfBoard(x, y)) return;
 
       const pointStatus = board[y][x];
 
       if (pointStatus === 0) {
         localChangePoint = [];
         break;
-      } else if (pointStatus === turn) {
+      } else if (pointStatus === currentTurn) {
         break;
       } else {
         localChangePoint.push([x, y]);

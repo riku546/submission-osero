@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const result = GetValidMoves(board, currentTurn);
     setValidMoves(result);
-  }, [board]);
+  }, [board , currentTurn]);
 
   const clickBoard = (rowIndex: number, colIndex: number) => {
     //すでにコマが置かれている場合は何もしない

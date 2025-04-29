@@ -35,7 +35,7 @@ const Board = ({ board, clickBoard, validMoves }) => {
                   <div
                     className={styles.stone}
                     style={{
-                      background: col === 1 ? 'black' : 'white',
+                      background: col === 1 ? 'green' : 'white',
                     }}
                   />
                 )}

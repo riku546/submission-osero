@@ -10,13 +10,13 @@ export const getReversedBoard = (
   const reversedBoard = structuredClone(board);
 
   directions.map((d) => {
-    let x = d[0] + currentX;
-    let y = d[1] + currentY;
+    const x = d[0] + currentX;
+    const y = d[1] + currentY;
 
     if (isOutOfBoard(x, y)) return;
 
     if (board[y][x] === getOppositeCellType(currentTurn)) {
-      const reverseCell: number[][] = findReversibleCells(x, y, d, board, currentTurn);
+      const reverseCell: number[][]  = findReversibleCells(x, y, d, board, currentTurn);
 
       reverseCell.map(([y, x]) => {
         reversedBoard[y][x] = currentTurn;
@@ -35,7 +35,7 @@ const findReversibleCells = (
 ): number[][] => {
   //すでに[y , x]が格納されているのは、
   //この関数が呼び出される前に currentTurnと異なるコマがあることが確定しているため
-  let reverseCell: number[][] = [[y, x]];
+  const reverseCell: number[][] = [[y, x]];
 
   while (true) {
     x += d[0];
